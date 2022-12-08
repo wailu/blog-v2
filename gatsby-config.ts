@@ -9,7 +9,27 @@ const config: GatsbyConfig = {
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
-  plugins: ["gatsby-plugin-postcss"],
+  plugins: [
+    "gatsby-plugin-postcss",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        // Footnotes mode (default: true)
+        footnotes: true,
+        // GitHub Flavored Markdown mode (default: true)
+        gfm: true,
+        // Plugins configs
+        plugins: [],
+      },
+    },
+  ],
 }
 
 export default config
